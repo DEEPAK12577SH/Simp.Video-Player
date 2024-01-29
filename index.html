@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    #video-container {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #playlist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .playlist-item {
+      margin: 10px 0;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      padding: 10px;
+      border-radius: 8px;
+      width: 200px;
+      text-align: center;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .playlist-item:hover {
+      background-color: #e0e0e0;
+      color: #000;
+    }
+
+    .current-video {
+      background-color: #2196F3;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="video-container">
+    <video id="video-player" controls>
+      <source src="sample.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <ul id="playlist">
+    <li class="playlist-item" onclick="playVideo('video1.mp4', this)">Video 1</li>
+    <li class="playlist-item" onclick="playVideo('video2.mp4', this)">Video 2</li>
+    <li class="playlist-item" onclick="playVideo('video3.mp4', this)">Video 3</li>
+    <!-- Add more video entries as needed -->
+  </ul>
+
+  <script>
+    const videoPlayer = document.getElementById('video-player');
+    const playlistItems = document.querySelectorAll('.playlist-item');
+
+    function playVideo(videoSource, playlistItem) {
+      videoPlayer.src = videoSource;
+      videoPlayer.play();
+
+      // Remove 'current-video' class from all playlist items
+      playlistItems.forEach(item => item.classList.remove('current-video'));
+      
+      // Add 'current-video' class to the clicked playlist item
+      playlistItem.classList.add('current-video');
+    }
+  </script>
+
+</body>
+</html>
